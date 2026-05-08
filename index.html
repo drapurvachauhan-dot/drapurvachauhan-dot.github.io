@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dr. Apurva A. Chauhan | Finance Academic & Researcher</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --navy: #0B1929;
+      --deep: #112240;
+      --card: #162d4a;
+      --accent: #C9A84C;
+      --accent2: #e8c97a;
+      --text: #ccd6f6;
+      --muted: #8892b0;
+      --light: #e6f1ff;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--navy);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* Grain overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.4;
+    }
+
+    /* ---- NAV ---- */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 1000;
+      background: rgba(11,25,41,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201,168,76,0.15);
+    }
+    .nav-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2rem;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      color: var(--accent);
+      font-size: 1.2rem; font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none; font-size: 0.85rem;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      transition: color 0.3s;
+      font-weight: 500;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .hamburger {
+      display: none; flex-direction: column;
+      gap: 5px; cursor: pointer; padding: 4px;
+    }
+    .hamburger span {
+      display: block; width: 24px; height: 2px;
+      background: var(--accent); border-radius: 2px;
+      transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+      transform-origin: center;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile menu */
+    .mobile-menu {
+      display: none; flex-direction: column;
+      background: rgba(17,34,64,0.98);
+      backdrop-filter: blur(20px);
+      padding: 1.5rem 2rem;
+      gap: 1.25rem;
+      border-top: 1px solid rgba(201,168,76,0.1);
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      color: var(--muted); text-decoration: none;
+      font-size: 0.95rem; letter-spacing: 0.06em;
+      text-transform: uppercase; font-weight: 500;
+      transition: color 0.3s; padding: 0.25rem 0;
+    }
+    .mobile-menu a:hover { color: var(--accent); }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+    }
+
+    /* ---- HERO ---- */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      position: relative;
+      padding: 0 2rem;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+    }
+    .hero-bg::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 60% 40%, rgba(201,168,76,0.07) 0%, transparent 60%),
+                  radial-gradient(ellipse 60% 80% at 20% 80%, rgba(17,34,64,0.8) 0%, transparent 70%);
+    }
+    /* Animated grid lines */
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      animation: gridMove 20s linear infinite;
+    }
+    @keyframes gridMove {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(60px); }
+    }
+    /* Floating orbs */
+    .orb {
+      position: absolute; border-radius: 50%;
+      filter: blur(80px); opacity: 0.12;
+      animation: float 8s ease-in-out infinite;
+    }
+    .orb1 { width: 400px; height: 400px; background: var(--accent); top: -10%; right: 5%; animation-delay: 0s; }
+    .orb2 { width: 300px; height: 300px; background: #4a90d9; bottom: 10%; left: -5%; animation-delay: 3s; }
+    .orb3 { width: 200px; height: 200px; background: var(--accent); top: 50%; right: 30%; animation-delay: 5s; }
+    @keyframes float {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-30px) scale(1.05); }
+    }
+
+    .hero-content {
+      position: relative; z-index: 1;
+      max-width: 1200px; margin: 0 auto; width: 100%;
+      padding-top: 5rem;
+    }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      color: var(--accent); font-family: 'DM Mono', monospace;
+      font-size: 0.8rem; letter-spacing: 0.15em;
+      margin-bottom: 1.5rem;
+      opacity: 0; animation: fadeUp 0.6s ease 0.3s forwards;
+    }
+    .hero-tag::before { content: '//'; opacity: 0.6; }
+    .hero-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      line-height: 1.05;
+      color: var(--light);
+      margin-bottom: 0.5rem;
+      opacity: 0; animation: fadeUp 0.7s ease 0.5s forwards;
+    }
+    .hero-name span { color: var(--accent); }
+    .hero-typing-wrapper {
+      font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+      color: var(--muted);
+      font-weight: 300;
+      margin-bottom: 2rem;
+      min-height: 2.5rem;
+      display: flex; align-items: center; gap: 0.5rem;
+      opacity: 0; animation: fadeUp 0.7s ease 0.7s forwards;
+    }
+    .typing-prefix { color: var(--text); font-weight: 400; }
+    .typing-text {
+      color: var(--accent2);
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      border-right: 2px solid var(--accent);
+      padding-right: 3px;
+      white-space: nowrap;
+      overflow: hidden;
+      animation: blink 0.8s step-end infinite;
+    }
+    @keyframes blink { 0%,100%{border-color:var(--accent)} 50%{border-color:transparent} }
+
+    .hero-desc {
+      max-width: 540px;
+      font-size: 1rem; line-height: 1.85;
+      color: var(--muted); margin-bottom: 2.5rem;
+      opacity: 0; animation: fadeUp 0.7s ease 0.9s forwards;
+    }
+    .hero-pills {
+      display: flex; flex-wrap: wrap; gap: 0.75rem;
+      margin-bottom: 2.5rem;
+      opacity: 0; animation: fadeUp 0.7s ease 1s forwards;
+    }
+    .pill {
+      display: inline-flex; align-items: center;
+      border: 1px solid rgba(201,168,76,0.3);
+      color: var(--accent); padding: 0.35rem 0.9rem;
+      border-radius: 2rem; font-size: 0.78rem;
+      font-family: 'DM Mono', monospace;
+      letter-spacing: 0.05em;
+      background: rgba(201,168,76,0.05);
+      transition: all 0.3s;
+    }
+    .pill:hover { background: rgba(201,168,76,0.12); border-color: var(--accent); }
+    .hero-cta {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      opacity: 0; animation: fadeUp 0.7s ease 1.1s forwards;
+    }
+    .btn-primary {
+      background: var(--accent); color: var(--navy);
+      padding: 0.75rem 2rem; border-radius: 4px;
+      font-weight: 600; font-size: 0.9rem;
+      letter-spacing: 0.05em; text-decoration: none;
+      transition: all 0.3s; display: inline-block;
+    }
+    .btn-primary:hover { background: var(--accent2); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,168,76,0.3); }
+    .btn-secondary {
+      border: 1px solid var(--accent); color: var(--accent);
+      padding: 0.75rem 2rem; border-radius: 4px;
+      font-weight: 500; font-size: 0.9rem;
+      letter-spacing: 0.05em; text-decoration: none;
+      transition: all 0.3s; display: inline-block;
+    }
+    .btn-secondary:hover { background: rgba(201,168,76,0.08); transform: translateY(-2px); }
+
+    /* Scroll indicator */
+    .scroll-hint {
+      position: absolute; bottom: 2.5rem; left: 50%;
+      transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+      opacity: 0; animation: fadeIn 1s ease 2s forwards;
+    }
+    .scroll-hint span { font-size: 0.7rem; color: var(--muted); letter-spacing: 0.15em; text-transform: uppercase; }
+    .scroll-line {
+      width: 1px; height: 50px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse { 0%,100%{opacity:0.4} 50%{opacity:1} }
+
+    @keyframes fadeUp { from{ opacity:0; transform:translateY(20px) } to{ opacity:1; transform:translateY(0) } }
+    @keyframes fadeIn { from{ opacity:0 } to{ opacity:1 } }
+
+    /* ---- SECTIONS ---- */
+    section { padding: 6rem 2rem; max-width: 1200px; margin: 0 auto; }
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem; letter-spacing: 0.2em;
+      color: var(--accent); text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      color: var(--light); line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .section-line {
+      width: 60px; height: 2px;
+      background: linear-gradient(to right, var(--accent), transparent);
+      margin-bottom: 3rem;
+    }
+
+    /* ---- ABOUT ---- */
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: start;
+    }
+    @media(max-width:768px){ .about-grid { grid-template-columns:1fr; gap:2rem; } }
+    .about-text p {
+      color: var(--muted); line-height: 1.9; margin-bottom: 1.25rem; font-size: 0.95rem;
+    }
+    .about-text p strong { color: var(--text); font-weight: 500; }
+    .stats-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+    .stat-card {
+      background: var(--card);
+      border: 1px solid rgba(201,168,76,0.1);
+      border-radius: 8px; padding: 1.5rem;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .stat-card:hover { border-color: rgba(201,168,76,0.4); transform: translateY(-3px); }
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem; color: var(--accent);
+      line-height: 1; margin-bottom: 0.3rem;
+    }
+    .stat-label { color: var(--muted); font-size: 0.8rem; letter-spacing: 0.05em; }
+
+    /* ---- EXPERTISE ---- */
+    #expertise { background: transparent; }
+    .expertise-cards {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    @media(max-width:900px){ .expertise-cards { grid-template-columns:1fr 1fr; } }
+    @media(max-width:560px){ .expertise-cards { grid-template-columns:1fr; } }
+    .exp-card {
+      background: var(--card);
+      border: 1px solid rgba(201,168,76,0.08);
+      border-radius: 10px; padding: 2rem;
+      transition: all 0.35s; position: relative; overflow: hidden;
+    }
+    .exp-card::before {
+      content: ''; position: absolute;
+      top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(to right, var(--accent), transparent);
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .exp-card:hover { transform: translateY(-5px); border-color: rgba(201,168,76,0.25); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+    .exp-card:hover::before { opacity: 1; }
+    .exp-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .exp-title { font-family:'Playfair Display',serif; font-size:1.1rem; color:var(--light); margin-bottom:0.5rem; }
+    .exp-desc { color:var(--muted); font-size:0.85rem; line-height:1.7; }
+
+    /* ---- EXPERIENCE ---- */
+    .timeline { position: relative; padding-left: 2rem; }
+    .timeline::before {
+      content: ''; position: absolute;
+      left: 0; top: 0; bottom: 0; width: 1px;
+      background: linear-gradient(to bottom, var(--accent), rgba(201,168,76,0.1));
+    }
+    .timeline-item {
+      position: relative; margin-bottom: 3rem; padding-left: 1.5rem;
+    }
+    .timeline-dot {
+      position: absolute; left: -2.4rem; top: 0.4rem;
+      width: 12px; height: 12px; border-radius: 50%;
+      background: var(--accent); border: 2px solid var(--navy);
+      box-shadow: 0 0 0 3px rgba(201,168,76,0.2);
+    }
+    .timeline-date {
+      font-family: 'DM Mono', monospace; font-size: 0.75rem;
+      color: var(--accent); letter-spacing: 0.1em;
+      margin-bottom: 0.5rem;
+    }
+    .timeline-role {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem; color: var(--light); margin-bottom: 0.25rem;
+    }
+    .timeline-org {
+      color: var(--muted); font-size: 0.9rem; margin-bottom: 0.75rem;
+      font-style: italic;
+    }
+    .timeline-subjects {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+    }
+    .subject-tag {
+      background: rgba(201,168,76,0.07);
+      border: 1px solid rgba(201,168,76,0.15);
+      color: var(--muted); padding: 0.2rem 0.6rem;
+      border-radius: 3px; font-size: 0.75rem;
+    }
+
+    /* ---- PUBLICATIONS ---- */
+    .pub-list { display: flex; flex-direction: column; gap: 1.25rem; }
+    .pub-card {
+      background: var(--card);
+      border: 1px solid rgba(201,168,76,0.08);
+      border-radius: 8px; padding: 1.5rem 2rem;
+      transition: all 0.3s; position: relative;
+    }
+    .pub-card:hover { border-color: rgba(201,168,76,0.25); transform: translateX(6px); }
+    .pub-year {
+      font-family: 'DM Mono', monospace; font-size: 0.7rem;
+      color: var(--accent); letter-spacing: 0.12em; margin-bottom: 0.4rem;
+    }
+    .pub-title { color: var(--text); font-size: 0.92rem; line-height: 1.6; margin-bottom: 0.4rem; font-weight: 500; }
+    .pub-journal { color: var(--muted); font-size: 0.8rem; font-style: italic; }
+    .pub-badge {
+      display: inline-block;
+      background: rgba(201,168,76,0.12);
+      color: var(--accent); border: 1px solid rgba(201,168,76,0.3);
+      padding: 0.1rem 0.5rem; border-radius: 3px;
+      font-size: 0.68rem; letter-spacing: 0.06em;
+      margin-left: 0.5rem; vertical-align: middle;
+    }
+
+    /* ---- CONFERENCES ---- */
+    .conf-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+    @media(max-width:768px){ .conf-grid { grid-template-columns:1fr; } }
+    .conf-card {
+      background: var(--card);
+      border: 1px solid rgba(201,168,76,0.08);
+      border-radius: 8px; padding: 1.5rem;
+      transition: all 0.3s;
+    }
+    .conf-card:hover { border-color: rgba(201,168,76,0.25); transform: translateY(-3px); }
+    .conf-year { font-family:'DM Mono',monospace; font-size:0.7rem; color:var(--accent); margin-bottom:0.4rem; }
+    .conf-title { color:var(--text); font-size:0.88rem; line-height:1.6; margin-bottom:0.4rem; font-weight:500; }
+    .conf-venue { color:var(--muted); font-size:0.78rem; }
+
+    /* ---- CERTIFICATIONS ---- */
+    .cert-grid {
+      display: grid; grid-template-columns: repeat(3,1fr);
+      gap: 1.25rem;
+    }
+    @media(max-width:900px){ .cert-grid { grid-template-columns:1fr 1fr; } }
+    @media(max-width:560px){ .cert-grid { grid-template-columns:1fr; } }
+    .cert-card {
+      background: var(--card); border-radius: 8px;
+      border: 1px solid rgba(201,168,76,0.08);
+      padding: 1.5rem; transition: all 0.3s;
+      display: flex; flex-direction: column; gap: 0.5rem;
+    }
+    .cert-card:hover { border-color: rgba(201,168,76,0.3); transform: translateY(-3px); }
+    .cert-icon { font-size: 1.5rem; }
+    .cert-name { color:var(--text); font-size:0.88rem; font-weight:500; line-height:1.4; }
+    .cert-issuer { color:var(--accent); font-size:0.75rem; font-family:'DM Mono',monospace; }
+
+    /* ---- EDUCATION ---- */
+    .edu-grid {
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem;
+    }
+    @media(max-width:900px){ .edu-grid { grid-template-columns:1fr 1fr; } }
+    @media(max-width:560px){ .edu-grid { grid-template-columns:1fr; } }
+    .edu-card {
+      background: var(--card); border-radius: 10px;
+      border: 1px solid rgba(201,168,76,0.08);
+      padding: 2rem; text-align: center; transition: all 0.3s;
+    }
+    .edu-card:hover { border-color: rgba(201,168,76,0.3); transform: translateY(-4px); }
+    .edu-degree {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem; color: var(--accent); margin-bottom: 0.5rem;
+    }
+    .edu-name { color: var(--text); font-size: 0.9rem; margin-bottom: 0.3rem; font-weight: 500; }
+    .edu-detail { color: var(--muted); font-size: 0.8rem; }
+
+    /* ---- FOOTER ---- */
+    footer {
+      background: var(--deep);
+      border-top: 1px solid rgba(201,168,76,0.1);
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    .footer-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem; color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+    .footer-links { display:flex; justify-content:center; gap:2rem; flex-wrap:wrap; margin-bottom:1.5rem; }
+    .footer-links a { color:var(--muted); text-decoration:none; font-size:0.85rem; transition:color 0.3s; }
+    .footer-links a:hover { color:var(--accent); }
+    .footer-copy { color:var(--muted); font-size:0.78rem; }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* Full-width section wrapper */
+    .section-full { width: 100%; }
+    .section-inner { max-width: 1200px; margin: 0 auto; padding: 6rem 2rem; }
+
+    /* Show/hide toggle for publication list */
+    .pub-more { display: none; }
+    .pub-more.open { display: flex; flex-direction: column; gap: 1.25rem; }
+    .toggle-btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: none; border: 1px solid rgba(201,168,76,0.3);
+      color: var(--accent); padding: 0.6rem 1.5rem;
+      border-radius: 4px; cursor: pointer; font-size: 0.85rem;
+      font-family: 'DM Sans', sans-serif; margin-top: 1.5rem;
+      transition: all 0.3s;
+    }
+    .toggle-btn:hover { background: rgba(201,168,76,0.08); }
+    .toggle-icon { transition: transform 0.3s; }
+    .toggle-btn.open .toggle-icon { transform: rotate(180deg); }
+
+    /* Active nav */
+    .nav-links a.active { color: var(--accent); }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">Dr. A. Chauhan</div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#expertise">Expertise</a>
+      <a href="#experience">Experience</a>
+      <a href="#publications">Research</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#education">Education</a>
+    </div>
+    <div class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#about" class="mob-link">About</a>
+    <a href="#expertise" class="mob-link">Expertise</a>
+    <a href="#experience" class="mob-link">Experience</a>
+    <a href="#publications" class="mob-link">Research</a>
+    <a href="#certifications" class="mob-link">Certifications</a>
+    <a href="#education" class="mob-link">Education</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg">
+    <div class="hero-grid"></div>
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-tag">Associate Professor · Finance · Research</div>
+    <h1 class="hero-name">Dr. Apurva<br/><span>A. Chauhan</span></h1>
+    <div class="hero-typing-wrapper">
+      <span class="typing-prefix">Passionate about&nbsp;</span>
+      <span class="typing-text" id="typingEl"></span>
+    </div>
+    <p class="hero-desc">
+      Finance academic, researcher, and educator with <strong>14+ years</strong> of experience in securities markets, behavioral finance, and investment analysis. UGC-NET &amp; GSET qualified. Scopus-indexed researcher.
+    </p>
+    <div class="hero-pills">
+      <span class="pill">📊 Security Analysis</span>
+      <span class="pill">🧠 Behavioral Finance</span>
+      <span class="pill">📈 Portfolio Management</span>
+      <span class="pill">🎓 Management Education</span>
+      <span class="pill">🔬 Scopus Researcher</span>
+    </div>
+    <div class="hero-cta">
+      <a href="#publications" class="btn-primary">View Research</a>
+      <a href="#experience" class="btn-secondary">Explore Career</a>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<div class="section-full" id="about">
+  <div class="section-inner">
+    <div class="section-label reveal">01 — About</div>
+    <h2 class="section-title reveal">Academic with a<br/>Market Mindset</h2>
+    <div class="section-line reveal"></div>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>I am <strong>Dr. Apurva A. Chauhan</strong>, an Associate Professor of Finance at Manav Rachna International Institute of Research &amp; Studies (MRIIRS), Faridabad. With over a decade and a half of teaching and research experience, I bring the worlds of financial markets and management education together.</p>
+        <p>My research spans <strong>behavioral finance, security analysis, investment decision-making, and capital markets</strong>. I have published in Scopus-indexed journals and presented at premier conferences including the India Finance Conference at IIM Ahmedabad.</p>
+        <p>As a <strong>UGC-NET &amp; GSET qualified</strong> academic, I have taught a wide spectrum of finance and management subjects at both undergraduate and postgraduate levels across multiple institutions.</p>
+        <p>Outside research, I serve as a reviewer for several international journals and am an active member of the All India Management Association and Indian Economic Association.</p>
+      </div>
+      <div class="stats-grid reveal">
+        <div class="stat-card">
+          <div class="stat-number">14+</div>
+          <div class="stat-label">Years of Experience</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">12</div>
+          <div class="stat-label">Journal Publications</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">15+</div>
+          <div class="stat-label">Conference Papers</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">4</div>
+          <div class="stat-label">Institutions Served</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EXPERTISE -->
+<div class="section-full" id="expertise" style="background: rgba(17,34,64,0.4);">
+  <div class="section-inner">
+    <div class="section-label reveal">02 — Areas of Expertise</div>
+    <h2 class="section-title reveal">Research &amp; Teaching<br/>Domains</h2>
+    <div class="section-line reveal"></div>
+    <div class="expertise-cards">
+      <div class="exp-card reveal">
+        <div class="exp-icon">📊</div>
+        <div class="exp-title">Security Analysis &amp; Portfolio Management</div>
+        <div class="exp-desc">Deep expertise in equity analysis, single index model, portfolio construction, and mutual fund performance evaluation using quantitative methods.</div>
+      </div>
+      <div class="exp-card reveal">
+        <div class="exp-icon">🧠</div>
+        <div class="exp-title">Behavioral Finance</div>
+        <div class="exp-desc">Researching investor psychology, cognitive biases, celebrity endorsement effects, and non-rational investment decision-making paradigms.</div>
+      </div>
+      <div class="exp-card reveal">
+        <div class="exp-icon">🌐</div>
+        <div class="exp-title">International Financial Markets</div>
+        <div class="exp-desc">Studying co-integration between global indices (US–India), treasury management, forex markets, and cross-border financial interdependencies.</div>
+      </div>
+      <div class="exp-card reveal">
+        <div class="exp-icon">📉</div>
+        <div class="exp-title">Corporate Governance &amp; Finance</div>
+        <div class="exp-desc">Analysis of governance failures, restructuring strategies, creative accounting, and their implications for Indian capital markets.</div>
+      </div>
+      <div class="exp-card reveal">
+        <div class="exp-icon">💡</div>
+        <div class="exp-title">Sustainable &amp; Ethical Finance</div>
+        <div class="exp-desc">Exploring ethical investment, ESG considerations, digital media influence on investment decisions, and sustainable development financing.</div>
+      </div>
+      <div class="exp-card reveal">
+        <div class="exp-icon">🤖</div>
+        <div class="exp-title">AI &amp; Data in Finance</div>
+        <div class="exp-desc">Examining the role of artificial intelligence in financial decision-making and leveraging data analytics tools for research insights.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EXPERIENCE -->
+<div class="section-full" id="experience">
+  <div class="section-inner">
+    <div class="section-label reveal">03 — Career Journey</div>
+    <h2 class="section-title reveal">Work Experience</h2>
+    <div class="section-line reveal"></div>
+    <div class="timeline">
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">JAN 2024 — PRESENT</div>
+        <div class="timeline-role">Associate Professor (Finance)</div>
+        <div class="timeline-org">Manav Rachna International Institute of Research &amp; Studies, Faridabad</div>
+        <div class="timeline-subjects">
+          <span class="subject-tag">Finance</span>
+          <span class="subject-tag">Research</span>
+          <span class="subject-tag">MBA Programs</span>
+        </div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">FEB 2023 — DEC 2023</div>
+        <div class="timeline-role">Assistant Professor</div>
+        <div class="timeline-org">Amity Global Business School, Amity University, Noida</div>
+        <div class="timeline-subjects">
+          <span class="subject-tag">Budgeting &amp; Control</span>
+          <span class="subject-tag">Cost &amp; Mgmt Accounting</span>
+          <span class="subject-tag">Banking &amp; FI</span>
+        </div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">FEB 2022 — FEB 2023</div>
+        <div class="timeline-role">Assistant Professor</div>
+        <div class="timeline-org">Manav Rachna International Institute of Research &amp; Studies, Faridabad</div>
+        <div class="timeline-subjects">
+          <span class="subject-tag">Operations Management</span>
+          <span class="subject-tag">Research Methodology</span>
+          <span class="subject-tag">Corporate Laws</span>
+        </div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">JAN 2020 — FEB 2022</div>
+        <div class="timeline-role">Assistant Professor — Management</div>
+        <div class="timeline-org">ITM Vocational University (UGC Recognized)</div>
+        <div class="timeline-subjects">
+          <span class="subject-tag">Security Analysis &amp; PM</span>
+          <span class="subject-tag">International Fin. Mgmt</span>
+          <span class="subject-tag">Treasury &amp; Forex</span>
+          <span class="subject-tag">Business Finance</span>
+        </div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">AUG 2012 — JAN 2020</div>
+        <div class="timeline-role">Assistant Professor — Management</div>
+        <div class="timeline-org">Naran Lala School of Industrial Management &amp; Computer Science, Navsari (GTU/AICTE)</div>
+        <div class="timeline-subjects">
+          <span class="subject-tag">Strategic Fin. Management</span>
+          <span class="subject-tag">Merger &amp; Acquisition</span>
+          <span class="subject-tag">Org. Behaviour</span>
+          <span class="subject-tag">Project Management</span>
+          <span class="subject-tag">MIS</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PUBLICATIONS -->
+<div class="section-full" id="publications" style="background: rgba(17,34,64,0.4);">
+  <div class="section-inner">
+    <div class="section-label reveal">04 — Research Output</div>
+    <h2 class="section-title reveal">Journal Publications</h2>
+    <div class="section-line reveal"></div>
+    <div class="pub-list reveal" id="pubListInitial">
+      <div class="pub-card">
+        <div class="pub-year">JULY 2023</div>
+        <div class="pub-title">Ethical investment: A study on investor's perspective in Noida region <span class="pub-badge">SCOPUS</span></div>
+        <div class="pub-journal">European Chemical Bulletin, 12 (Special Mgmt Issue 4), pp. 17485–17491</div>
+      </div>
+      <div class="pub-card">
+        <div class="pub-year">APRIL 2022</div>
+        <div class="pub-title">Impact of Celebrity Endorsement on investment Decisions in Mutual Fund <span class="pub-badge">SCOPUS</span> <span class="pub-badge">UGC-CARE</span></div>
+        <div class="pub-journal">International Journal of Mechanical Engineering, Kalahari Journals, Vol. 7 (Special Issue 5)</div>
+      </div>
+      <div class="pub-card">
+        <div class="pub-year">DEC 2021</div>
+        <div class="pub-title">Security analysis of selected stocks in Information Technology sector <span class="pub-badge">SCOPUS</span></div>
+        <div class="pub-journal">Turkish Online Journal of Qualitative Inquiry, Vol 12 (Issue 10)</div>
+      </div>
+      <div class="pub-card">
+        <div class="pub-year">OCT 2020</div>
+        <div class="pub-title">Consumer's Buying Pattern During Pandemic <span class="pub-badge">UGC Approved</span></div>
+        <div class="pub-journal">JETIR, Volume 7 Issue 10 | Impact Factor: 5.87</div>
+      </div>
+    </div>
+    <div class="pub-more" id="pubMore">
+      <div class="pub-card">
+        <div class="pub-year">JULY 2018</div>
+        <div class="pub-title">Comparative analysis of performance of selected mutual fund schemes <span class="pub-badge">UGC Approved</span></div>
+        <div class="pub-journal">JETIR, Vol.5, Issue 7, pp369–374 | ISSN: 2349-5162</div>
+      </div>
+      <div class="pub-card">
+        <div class="pub-year">FEB 2018</div>
+        <div class="pub-title">A Study on Examining Impact of Corporate Governance Failure on Indian Stock Market</div>
+        <div class="pub-journal">International Journal Of Research Culture Society, Special Issue–7, Impact Factor: 3.449</div>
+      </div>
+      <div class="pub-card">
+        <div class="pub-year">JULY 2015</div>
+        <div class="pub-title">Indian Security Market: Trends and Challenges</div>
+        <div class="pub-journal">IJARMS, Vol. 4 (Issue 7) | Impact Factor: 5.313</div>
+      </div>
+      <div class="pub-card">
+        <div class="pub-year">OCT 2014</div>
+        <div class="pub-title">A study on usage of Sharpe's Single Index Model in Portfolio Construction with reference to CNX Nifty</div>
+        <div class="pub-journal">Global Journal for Research Analysis, 3(10), pp. 92–94</div>
+      </div>
+      <div class="pub-card">
+        <div class="pub-year">APRIL 2014</div>
+        <div class="pub-title">Fundamental analysis of Indian Automobile Industry with reference to the selected companies</div>
+        <div class="pub-journal">International Journal Of Scientific Research, 3(4), pp. 254–255</div>
+      </div>
+      <div class="pub-card">
+        <div class="pub-year">FEB 2014</div>
+        <div class="pub-title">Behavioral Finance: A New Paradigm of Finance</div>
+        <div class="pub-journal">IJAIEM, 3(2), pp. 359–362 | Impact Factor: 2.379</div>
+      </div>
+      <div class="pub-card">
+        <div class="pub-year">DEC 2013</div>
+        <div class="pub-title">A Study on overview of Financial Inclusion in India</div>
+        <div class="pub-journal">Indian Journal Of Applied Research, 3(12), pp. 4–6</div>
+      </div>
+      <div class="pub-card">
+        <div class="pub-year">OCT 2013</div>
+        <div class="pub-title">Impact of Convergence to IFRS on Financial Position of a company: A Case Study</div>
+        <div class="pub-journal">Global Journal For Research Analysis, 2(10)</div>
+      </div>
+    </div>
+    <button class="toggle-btn" id="pubToggle">
+      <span>Show More Publications</span>
+      <span class="toggle-icon">▾</span>
+    </button>
+
+    <!-- Book Publication -->
+    <div style="margin-top: 3rem;" class="reveal">
+      <div class="section-label">Book Publication</div>
+      <div class="pub-card" style="margin-top:1rem; border-color:rgba(201,168,76,0.25);">
+        <div class="pub-year">APRIL 2017</div>
+        <div class="pub-title" style="font-size:1rem; font-family:'Playfair Display',serif; font-style:italic;">Corporate Restructuring: Theoretical Aspects with Brief Case Studies</div>
+        <div class="pub-journal">LAP Lambert Academic Publishing House | ISBN: 978-3-330-06701-1</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONFERENCES -->
+<div class="section-full" id="conferences">
+  <div class="section-inner">
+    <div class="section-label reveal">05 — Conference Proceedings</div>
+    <h2 class="section-title reveal">Selected Conference<br/>Presentations</h2>
+    <div class="section-line reveal"></div>
+    <div class="conf-grid">
+      <div class="conf-card reveal">
+        <div class="conf-year">NOV 2024</div>
+        <div class="conf-title">Financial impact of US market on Indian stock market: Co-integration and interdependency</div>
+        <div class="conf-venue">4th PRISM Conference, School of Leadership &amp; Management, MRIIRS</div>
+      </div>
+      <div class="conf-card reveal">
+        <div class="conf-year">OCT 2024</div>
+        <div class="conf-title">Role of Artificial Intelligence in financial decision making</div>
+        <div class="conf-venue">Com-IT-Con 2024, Manav Rachna International Institute of Research &amp; Studies</div>
+      </div>
+      <div class="conf-card reveal">
+        <div class="conf-year">AUG 2024</div>
+        <div class="conf-title">Does Digital Media impact investment decisions? A study of selected investors</div>
+        <div class="conf-venue">13th TIPSCON (ICSSR Sponsored), Indian International Centre, New Delhi</div>
+      </div>
+      <div class="conf-card reveal">
+        <div class="conf-year">MAR 2024</div>
+        <div class="conf-title">Financing Sustainable Development Growth: Evidence from selected investors</div>
+        <div class="conf-venue">MRCON International Conference, MRIIRS (Knowledge Partner: Intl. Mgmt College, Frankfurt)</div>
+      </div>
+      <div class="conf-card reveal">
+        <div class="conf-year">DEC 2016</div>
+        <div class="conf-title">Day-of-the-week effect in Indian Stock market: BSE Sensex and sectoral indices</div>
+        <div class="conf-venue">6th India Finance Conference, IIM Ahmedabad (IIM-A / IIM-B / IIM-C)</div>
+      </div>
+      <div class="conf-card reveal">
+        <div class="conf-year">OCT 2017</div>
+        <div class="conf-title">Evolution and Concerns of Bitcoin: A Digital Cryptocurrency</div>
+        <div class="conf-venue">CCFS-2017, Gujarat Technological University (International Conference)</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CERTIFICATIONS -->
+<div class="section-full" id="certifications" style="background: rgba(17,34,64,0.4);">
+  <div class="section-inner">
+    <div class="section-label reveal">06 — Professional Development</div>
+    <h2 class="section-title reveal">Certifications &amp;<br/>Qualifications</h2>
+    <div class="section-line reveal"></div>
+    <div class="cert-grid">
+      <div class="cert-card reveal">
+        <div class="cert-icon">🏛️</div>
+        <div class="cert-name">Investment Management (8-Week Course)</div>
+        <div class="cert-issuer">NPTEL / IIT Kharagpur — May 2024</div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon">💰</div>
+        <div class="cert-name">Managing Your Personal Finance</div>
+        <div class="cert-issuer">LinkedIn Learning / NASBA — Mar 2024</div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon">🎓</div>
+        <div class="cert-name">AIMA Bizlab Certified Trainer</div>
+        <div class="cert-issuer">AIMA — Since March 2024</div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon">📊</div>
+        <div class="cert-name">Ask Questions to Make Data-Driven Decisions</div>
+        <div class="cert-issuer">Google / Coursera — Mar 2024</div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon">🌐</div>
+        <div class="cert-name">Fundamentals of Digital Marketing</div>
+        <div class="cert-issuer">Google Digital Unlocked — Apr 2020</div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon">📈</div>
+        <div class="cert-name">Stock Trading with Price Action</div>
+        <div class="cert-issuer">Udemy</div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon">🇬🇧</div>
+        <div class="cert-name">Cambridge Placement Test &amp; SCOPE (Business Language)</div>
+        <div class="cert-issuer">University of Cambridge — Mar 2014</div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon">💻</div>
+        <div class="cert-name">Course on Computer Concepts (CCC)</div>
+        <div class="cert-issuer">NIELIT — Sep 2014</div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon">📋</div>
+        <div class="cert-name">Foundations: Data, Data, Everywhere</div>
+        <div class="cert-issuer">Google / Coursera — Feb 2024</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EDUCATION -->
+<div class="section-full" id="education">
+  <div class="section-inner">
+    <div class="section-label reveal">07 — Academic Background</div>
+    <h2 class="section-title reveal">Education &amp;<br/>Qualifications</h2>
+    <div class="section-line reveal"></div>
+    <div class="edu-grid">
+      <div class="edu-card reveal">
+        <div class="edu-degree">Ph.D</div>
+        <div class="edu-name">Doctor of Philosophy</div>
+        <div class="edu-detail">Finance / Management</div>
+      </div>
+      <div class="edu-card reveal">
+        <div class="edu-degree">MBA</div>
+        <div class="edu-name">Master of Business Administration</div>
+        <div class="edu-detail">Finance Specialization</div>
+      </div>
+      <div class="edu-card reveal">
+        <div class="edu-degree">BBA</div>
+        <div class="edu-name">Bachelor of Business Administration</div>
+        <div class="edu-detail">Undergraduate Foundation</div>
+      </div>
+      <div class="edu-card reveal">
+        <div class="edu-degree">NET</div>
+        <div class="edu-name">UGC-NET Qualified</div>
+        <div class="edu-detail">National Eligibility Test for Lectureship</div>
+      </div>
+      <div class="edu-card reveal">
+        <div class="edu-degree">GSET</div>
+        <div class="edu-name">GSET Qualified</div>
+        <div class="edu-detail">Gujarat State Eligibility Test</div>
+      </div>
+      <div class="edu-card reveal">
+        <div class="edu-degree">🔬</div>
+        <div class="edu-name">Scopus Author Profile</div>
+        <div class="edu-detail" style="font-family:'DM Mono',monospace; font-size:0.7rem; word-break:break-all;">ID: 59999491800</div>
+      </div>
+    </div>
+
+    <!-- Journal Reviewer + Memberships -->
+    <div style="margin-top:3.5rem;" class="reveal">
+      <div class="section-label" style="margin-bottom:1.5rem;">Journal Reviewer &amp; Memberships</div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.25rem;">
+        <div class="exp-card" style="padding:1.5rem;">
+          <div class="exp-title" style="font-size:0.95rem; margin-bottom:0.75rem;">📝 Reviewer Committees</div>
+          <ul style="color:var(--muted); font-size:0.82rem; line-height:2; list-style:none; padding:0;">
+            <li>→ IJIREMS (ISSN: 2349-7300, IF: 6.11) — since Aug 2018</li>
+            <li>→ JETIR (ISSN: 2349-5162, IF: 5.87) — since Jul 2018</li>
+            <li>→ Global Journal of Management &amp; Business — since Jun 2017</li>
+          </ul>
+        </div>
+        <div class="exp-card" style="padding:1.5rem;">
+          <div class="exp-title" style="font-size:0.95rem; margin-bottom:0.75rem;">🏛️ Professional Memberships</div>
+          <ul style="color:var(--muted); font-size:0.82rem; line-height:2; list-style:none; padding:0;">
+            <li>→ All India Management Association (AIMA)</li>
+            <li>→ Indian Economic Association</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Dr. Apurva A. Chauhan</div>
+  <p style="color:var(--muted); font-size:0.85rem; margin-bottom:1.5rem; font-style:italic;">Associate Professor · Finance · MRIIRS, Faridabad</p>
+  <div class="footer-links">
+    <a href="mailto:drapurvachauhan@gmail.com">📧 drapurvachauhan@gmail.com</a>
+    <a href="https://www.scopus.com/authid/detail.uri?authorId=59999491800" target="_blank">🔬 Scopus Profile</a>
+    <a href="tel:+919879799054">📞 +91 9879799054</a>
+  </div>
+  <div class="footer-copy">&copy; 2025 Dr. Apurva A. Chauhan · All Rights Reserved</div>
+</footer>
+
+<script>
+  // ---- HAMBURGER ----
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+  // Close on link click
+  document.querySelectorAll('.mob-link').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+    });
+  });
+
+  // ---- TYPING ANIMATION ----
+  const phrases = [
+    'Behavioral Finance',
+    'Market Research',
+    'Investment Analysis',
+    'Portfolio Theory',
+    'Capital Markets',
+    'Management Education'
+  ];
+  const typingEl = document.getElementById('typingEl');
+  let phraseIdx = 0, charIdx = 0, deleting = false;
+  function type() {
+    const current = phrases[phraseIdx];
+    if (!deleting) {
+      typingEl.textContent = current.slice(0, charIdx + 1);
+      charIdx++;
+      if (charIdx === current.length) {
+        deleting = true;
+        setTimeout(type, 1800);
+        return;
+      }
+    } else {
+      typingEl.textContent = current.slice(0, charIdx - 1);
+      charIdx--;
+      if (charIdx === 0) {
+        deleting = false;
+        phraseIdx = (phraseIdx + 1) % phrases.length;
+      }
+    }
+    setTimeout(type, deleting ? 60 : 90);
+  }
+  setTimeout(type, 1500);
+
+  // ---- SCROLL REVEAL ----
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        const siblings = Array.from(entry.target.parentElement.querySelectorAll('.reveal:not(.visible)'));
+        const delay = siblings.indexOf(entry.target) * 80;
+        setTimeout(() => entry.target.classList.add('visible'), delay);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  revealEls.forEach(el => observer.observe(el));
+
+  // ---- PUBLICATION TOGGLE ----
+  const pubToggle = document.getElementById('pubToggle');
+  const pubMore = document.getElementById('pubMore');
+  pubToggle.addEventListener('click', () => {
+    const isOpen = pubMore.classList.toggle('open');
+    pubToggle.classList.toggle('open');
+    pubToggle.querySelector('span').textContent = isOpen ? 'Show Fewer Publications' : 'Show More Publications';
+    if (isOpen) {
+      pubMore.querySelectorAll('.pub-card').forEach((card, i) => {
+        card.style.opacity = 0;
+        card.style.transform = 'translateY(20px)';
+        setTimeout(() => {
+          card.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+          card.style.opacity = 1;
+          card.style.transform = 'translateY(0)';
+        }, i * 80);
+      });
+    }
+  });
+
+  // ---- ACTIVE NAV HIGHLIGHT ----
+  const sections = document.querySelectorAll('[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+      if (window.scrollY >= section.offsetTop - 120) current = section.id;
+    });
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === '#' + current) link.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>
